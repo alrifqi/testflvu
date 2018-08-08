@@ -2,7 +2,7 @@ from mongokit import Document
 from app.helpers import Model as ModelHelper
 from app import connection
 
-@connection.register
+# @connection.register
 class User(Document):
     structure = {
         'name': unicode,

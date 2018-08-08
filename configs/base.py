@@ -23,12 +23,3 @@ class Config(object):
     SECRET_KEY = "secret"
     MONGODB_HOST = "localhost"
     MONGODB_PORT = 27017
-
-class ProdConfig(Config):
-    DEBUG = False
-
-class DevConfig(Config):
-    DEBUG = True
-
-class TestingConfig(Config):
-    TESTING = True
