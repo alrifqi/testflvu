@@ -23,3 +23,6 @@ class Config(object):
     SECRET_KEY = "secret"
     MONGODB_HOST = "localhost"
     MONGODB_PORT = 27017
+
+    SQLALCHEMY_DATABASE_URI = 'postgresql://aersuredb:AerDash2018@localhost/aersure'
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
