@@ -4,7 +4,7 @@ from flask_oauthlib.provider import OAuth2Provider
 
 from bson.json_util import dumps
 from .models import User, Client, Token
-from app import connection as conn
+from app import connection as conn, oauth
 
 mod_oauth = Blueprint('oauth', __name__, url_prefix='/oauth', template_folder='templates')
 
@@ -14,29 +14,34 @@ def sample():
     res = dumps(results)
     return res, 200
 
-@mod_oauth.route('/insert', methods=['GET'])
-def insert():
-    user = conn.User()
-    user['name'] = unicode('reza')
-    user['username'] = unicode('admin')
-    user['email'] = unicode('reza.nurrifqi@aersure.com')
-    user['password'] = unicode('test')
-    user.save()
+# @mod_oauth.route('/insert', methods=['GET'])
+# def insert():
+#     user = conn.User()
+#     user['name'] = unicode('reza')
+#     user['username'] = unicode('admin')
+#     user['email'] = unicode('reza.nurrifqi@aersure.com')
+#     user['password'] = unicode('test')
+#     user.save()
+#
+#     client = conn.Client()
+#     client['name'] = unicode('confidential')
+#     client['client_id'] = unicode('confidential')
+#     client['client_secret'] = unicode('confidential')
+#     # client['client_type'] = unicode('confidential')
+#     client['_redirect_uris'] = unicode('http://localhost:8080/authorized')
+#     client['user'] = user
+#     client.save()
+#
+#     access_token = conn.Token()
+#     access_token['user'] = user
+#     access_token['client'] = client
+#     access_token.save()
+#     return 'success', 200
 
-    client = conn.Client()
-    client['name'] = unicode('confidential')
-    client['client_id'] = unicode('confidential')
-    client['client_secret'] = unicode('confidential')
-    # client['client_type'] = unicode('confidential')
-    client['_redirect_uris'] = unicode('http://localhost:8080/authorized')
-    client['user'] = user
-    client.save()
-
-    access_token = conn.Token()
-    access_token['user'] = user
-    access_token['client'] = client
-    access_token.save()
-    return 'success', 200
+@mod_oauth.route('/token')
+@oauth.token_handler
+def access_token():
+    return None
 
 # def default_provider(app):
 #     oauth = OAuth2Provider(app)
