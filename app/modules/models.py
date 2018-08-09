@@ -1,7 +1,9 @@
 from mongokit import Document, DocumentMigration
 from app.helpers import Model as ModelHelper
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 import datetime
+
+db = SQLAlchemy()
 
 # @connection.register
 # class User(Document):

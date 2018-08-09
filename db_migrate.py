@@ -1,6 +1,6 @@
 __author__ = 'alrifqi'
-from app import db
-from app.modules.oauth.models import Client, Grant, Token, User
+from app.modules.models import db
+from app.modules.models import Client, Token, User
 
 db.create_all()
 

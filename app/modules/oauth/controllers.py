@@ -1,10 +1,8 @@
-from datetime import datetime, timedelta
-from flask import Blueprint, request, render_template, flash, g, session, redirect, url_for
-from flask_oauthlib.provider import OAuth2Provider
-
 from bson.json_util import dumps
-from .models import User, Client, Token
-from app import connection as conn, oauth
+from flask import Blueprint
+
+from app.modules.models import User
+from app.libs.OauthHandler import oauth
 
 mod_oauth = Blueprint('oauth', __name__, url_prefix='/oauth', template_folder='templates')
 
@@ -41,6 +39,11 @@ def sample():
 @mod_oauth.route('/token')
 @oauth.token_handler
 def access_token():
+    return None
+
+@mod_oauth.route('/authorize')
+@oauth.authorize_handler
+def authorize_handler():
     return None
 
 # def default_provider(app):
