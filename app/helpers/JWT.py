@@ -7,10 +7,11 @@ jwt = JWTManager()
 
 @jwt.user_claims_loader
 def add_claims_to_access_token(identity):
+    print identity
     if identity.username == 'admin':
-        return {'roles': 'xadminx'}
+        return {'roles': 'xadminx', 'id': identity.id, 'email': identity.email}
     else:
-        return {'roles': 'user'}
+        return {'roles': 'user', 'id': identity.id, 'email': identity.email}
 
 @jwt.user_identity_loader
 def add_identity_to_access_token(identity):
